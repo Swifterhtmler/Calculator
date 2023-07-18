@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Calculator</title>
+    <script src="calculator.js"></script>
+    <link  href="styles.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>  
+  <body></body>
+    <div id="allbuttons">
+    <div>
+      <input type="text" id="display" disabled /><br />
+      <button onclick="updateDisplay(1)">1</button>
+      <button onclick="updateDisplay(2)">2</button>
+      <button onclick="updateDisplay(3)">3</button>
+      <button id="deleteallcharecter" onclick="deleteallcharecter()">⟪</button>
+      <br />
+      <button onclick="updateDisplay(4)">4</button>
+      <button onclick="updateDisplay(5)">5</button>
+      <button id="kuusi" onclick="updateDisplay(6)">6</button>
+      <button id="root" onclick="calculateRoot()">√</button> 
+      <br />
+      <button onclick="updateDisplay(7)">7</button>
+      <button onclick="updateDisplay(8)">8</button>
+      <button onclick="updateDisplay(9)">9</button>
+      <button id="piste" onclick="updateDisplay('.')">.</button>
+      
+      <br />
+      <button onclick="updateDisplay(0)">0</button>
+      <button onclick="updateDisplay('+')">+</button>
+      <button id="miinus" onclick="updateDisplay('-')">-</button>
+      <button id="updatePercentage" onclick="updatePercentage()">%</button>
+      
+      <br />
+      <button id="multiplecation" onclick="updateDisplay('*')">*</button>
+      <button id="divide" onclick="updateDisplay('/')">/</button>
+     
+       
+      <button id="sameAs" onclick="calculate()">=</button>
+       <button id="erase" onclick="deletecharecter()">␡</button>
+      <br />
+      <br />
+    </div>
+    </div>
+
+    <script>
+      function deletecharecter() {
+        var display = document.getElementById("display");
+        display.value = display.value.slice(0, -1);
+      }
+
+      function deleteallcharecter() {
+        var display = document.getElementById("display");
+        display.value = display.value.slice(0, -50);
+      }
+
+
+
+
+    </script>
+
+    <script>
+      let display = document.getElementById("display");
+
+      function updateDisplay(val) {
+        display.value += val;
+      }
+
+      function updateDisplay(val) {
+        var currentVal = display.value;
+        var lastChar = currentVal.charAt(currentVal.length - 1);
+        if (val === '.' && lastChar === '.') {
+          return;
+        }
+        display.value += val;
+      }
+
+      function calculate() {
+        display.value = eval(display.value);
+      }
+
+      function calculateRoot() {
+        var value = parseFloat(display.value);
+        var result = Math.sqrt(value);
+        display.value = result;
+      }
+    
+
+      function updatePercentage() {
+        var currentValue = parseFloat(display.value);
+        var newValue = currentValue / 100;
+        display.value = newValue;
+      }
+
+
+
+    </script>
+  </body>
+</html>
